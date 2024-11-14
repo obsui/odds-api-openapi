@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: The Odds API
+  version: "1.0"
+  description: API for retrieving live NHL betting odds.
+
+servers:
+  - url: https://api.the-odds-api.com/v4
+
+paths:
+  /sports/icehockey_nhl/odds:
+    get:
+      summary: Get current odds for NHL with compatible markets
+      operationId: getNhlOdds
+      parameters:
+        - name: apiKey
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "your_api_key"
+          description: Your API key for authentication.
+        - name: regions
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "us"
+          description: The region to pull odds for (e.g., "us").
+        - name: markets
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "h2h,spreads,totals"
+          description: Comma-separated list of betting markets (e.g., "h2h,spreads,totals").
+        - name: oddsFormat
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "american"
+          description: The format of the odds (e.g., "american").
+      responses:
+        "200":
+          description: Current odds for NHL with compatible markets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the game.
+                    sport_key:
+                      type: string
+                      description: Key identifying the sport.
+                    sport_title:
+                      type: string
+                      description: Title of the sport (e.g., NHL).
+                    commence_time:
+                      type: string
+                      format: date-time
+                      description: The start time of the game in UTC.
+                    home_team:
+                      type: string
+                      description: Name of the home team.
+                    away_team:
+                      type: string
+                      description: Name of the away team.
+                    bookmakers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                            description: Key of the bookmaker (e.g., "betfair").
+                          title:
+                            type: string
+                            description: Name of the bookmaker.
+                          markets:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                key:
+                                  type: string
+                                  description: Type of market (e.g., "h2h", "spreads", "totals").
+                                outcomes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        description: Team or outcome name (e.g., "home_team", "away_team").
+                                      price:
+                                        type: number
+                                        description: Odds offered for the outcome.
