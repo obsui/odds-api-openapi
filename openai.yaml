@@ -6,7 +6,7 @@ info:
   contact:
     email: "support@example.com"
   termsOfService: "https://example.com/terms"
-  privacyPolicy: "https://example.com/privacy"  # Placeholder URL if required
+  privacyPolicy: "https://example.com/privacy"
 
 servers:
   - url: https://api.the-odds-api.com/v4
@@ -53,7 +53,8 @@ paths:
           required: true
           schema:
             type: string
-            example: "8ac9d3796096d44d7e1c8c50aa88a7a7"  # Your actual API key is included here
+            example: "8ac9d3796096d44d7e1c8c50aa88a7a7"
+          default: "8ac9d3796096d44d7e1c8c50aa88a7a7"
         - name: regions
           in: query
           required: true
