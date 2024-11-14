@@ -53,8 +53,8 @@ paths:
           required: true
           schema:
             type: string
-            example: "8ac9d3796096d44d7e1c8c50aa88a7a7"
-          default: "8ac9d3796096d44d7e1c8c50aa88a7a7"
+            example: "283e3940f5d0de060198132213feef1c"
+          default: "283e3940f5d0de060198132213feef1c"
         - name: regions
           in: query
           required: true
